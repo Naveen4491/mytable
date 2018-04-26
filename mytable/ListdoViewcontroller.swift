@@ -9,7 +9,7 @@ import UIKit
 
 class ListdoViewcontroller: UITableViewController {
 
-    let names  = ["hello","myname","sachin","venkat","rahul","Kohgli"]
+    var names  = ["hello","myname","sachin","venkat","rahul","Kohgli"]
     
     
     override func viewDidLoad() {
@@ -46,6 +46,45 @@ class ListdoViewcontroller: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
     }
+    
+    
+    @IBAction func addItems(_ sender: UIBarButtonItem) {
+        
+        var textfield = UITextField()
+        
+        
+        let alert = UIAlertController(title: "add new item", message: "", preferredStyle: .alert)
+        
+        let action  = UIAlertAction(title: "additem", style: .default) { (action) in
+            print("sucess")
+            self.names.append(textfield.text!)
+            
+           self.tableView.reloadData()
+            
+            
+        }
+        
+        alert.addTextField { (alerttextfield) in
+            
+            alerttextfield.placeholder = "Enter Product Name"
+            
+            textfield = alerttextfield
+            print(textfield)
+            
+        }
+        
+        
+        
+        alert .addAction(action)
+        present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+        
+    }
+    
+    
     
 
 
